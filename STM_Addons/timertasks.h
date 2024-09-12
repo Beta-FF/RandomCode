@@ -2,7 +2,7 @@
 
 class Timer {
 public:
-	Timer(uint16_t period_ms, bool enable) {
+	Timer(uint16_t period_ms, bool enable = true) {
 		setPeriod(period_ms);
 		en = enable;
 	}

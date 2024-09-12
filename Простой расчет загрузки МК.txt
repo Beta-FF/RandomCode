@@ -1,0 +1,12 @@
+Timer TaskTotalLoad(10);
+uint8_t load_cnt = 0;
+
+
+// задача
+if(TaskTotalLoad.ready()) load_cnt++;
+
+// 1 раз в сек:
+load_cnt = constrain(load_cnt, 0, 100);
+uint8_t str_len = sprintf(uart_str, "%d%%\r\n", (uint8_t)(100 - load_cnt));
+HAL_UART_Transmit(&huart1, (uint8_t*)uart_str, str_len, 10);
+load_cnt = 0;

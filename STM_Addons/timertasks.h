@@ -6,24 +6,24 @@ public:
 		setPeriod(period_ms);
 		en = enable;
 	}
-	
+
 	void setPeriod(uint16_t period_ms) {
 		prd = period_ms;
 	}
-	
+
 	uint16_t getPeriod() {
 		return prd;
 	}
-	
+
 	void disable() {
 		en = false;
 	}
-	
+
 	void enable() {
 		en = true;
 		tmr = HAL_GetTick();
 	}
-	
+
 	bool ready() {
 		if (en && HAL_GetTick() - tmr >= prd) {
 			tmr = HAL_GetTick();

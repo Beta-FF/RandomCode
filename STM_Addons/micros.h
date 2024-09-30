@@ -42,15 +42,15 @@ __STATIC_INLINE void DWT_Init(void)
 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;   // запускаем счётчик
 }
 
-__STATIC_INLINE void delay_us(uint32_t us)
-{
-	uint32_t us_count_tic =  us * (SystemCoreClock / 1000000U);
-	DWT->CYCCNT = 0U;
-	while(DWT->CYCCNT < us_count_tic);
-}
-
 __STATIC_INLINE uint32_t micros(void){
 	return  DWT->CYCCNT / (SystemCoreClock / 1000000U);
+}
+
+__STATIC_INLINE void delay_us(uint32_t us)
+{
+	uint32_t us_count_tic =  DWT->CYCCNT + us * (SystemCoreClock / 1000000U);
+	//DWT->CYCCNT = 0U;
+	while(DWT->CYCCNT < us_count_tic);
 }
 
 #endif /* INC_MICROS_H_ */

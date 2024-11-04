@@ -1,0 +1,45 @@
+//в мэйн си
+
+/* USER CODE BEGIN PV */
+char RX_str[64]; // тут лежит принятая строка
+char str[64];
+char RX_str_temp[1];
+uint16_t RX_cnt = 0;
+
+//инициализация перед началом цикла while (1)
+HAL_UART_Receive_IT(&huart3, RX_str_temp, 1);
+
+//главная функция обработки приема
+/* USER CODE BEGIN 0 */
+void UART3_CallBack() {
+	RX_str[RX_cnt] = RX_str_temp[0];
+	RX_cnt++;
+	if(RX_str_temp[0] == '\r') { // \r - символ конца строки, можно поменять на другой
+		RX_str[RX_cnt] = '\0'; //завернающий символ принятой строки, не менять
+		RX_cnt = 0;
+		//HAL_UART_Transmit(&huart3, str, sprintf(str, "RX = %s\r\n", RX_str), 100); //функция эхо
+	}
+	HAL_UART_Receive_IT(&huart3, RX_str_temp, 1);
+}
+
+// в мэйн аш
+
+/* USER CODE BEGIN Private defines */
+
+void UART3_CallBack();
+
+/* USER CODE END Private defines */
+
+//в stm32..._it.с
+
+void USART3_IRQHandler(void) // USART3 - нужный уарт
+{
+  /* USER CODE BEGIN USART3_IRQn 0 */
+
+  /* USER CODE END USART3_IRQn 0 */
+  HAL_UART_IRQHandler(&huart3); // не трогать
+  /* USER CODE BEGIN USART3_IRQn 1 */
+UART3_CallBack(); //наша функция из мэйн си
+
+  /* USER CODE END USART3_IRQn 1 */
+}

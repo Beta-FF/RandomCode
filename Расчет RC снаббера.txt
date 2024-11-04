@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdint.h>
+
+float freq = 81 * pow(10, 6); //частота колебаний, MHz
+float bad_C = 0.2 * pow(10, -9); //паразитная емкость, nF
+float maxU = 24; //максимальное входное напряжение, V
+float f_DCDC = 180 * pow(10, 3); // частота работы преобразователя, kHz
+
+float bad_L; //паразитная индуктивность, H
+float bad_Z; //Импеданс контура, Ohm
+float R_sn; //R снаббера, Ohm
+float PR_sn; //Мощность R снаббера, W
+float C_sn; //C снаббера, nF
+
+int main()
+{
+    printf("RC Snubber Calc\r\n\r\n");
+    bad_L = (1 / (4 * pow(M_PI, 2) * pow(freq, 2) * bad_C));
+    printf("L контура = %f нГн\r\n", bad_L * pow(10, 9));
+    R_sn = sqrt(bad_L / bad_C);
+    printf("R снаббера = %.2f Ом\r\n", R_sn);
+    C_sn = 3 / (R_sn * freq);
+    printf("C снаббера = %.2f нФ\r\n", C_sn * pow(10, 9));
+    PR_sn = (1 / 2) * C_sn* pow(10, 9) * pow(maxU, 2) * f_DCDC;
+    printf("Мощность R снаббера = %f Вт\r\n", PR_sn);
+
+    return 0;
+}

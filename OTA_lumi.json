@@ -1,9 +1,11 @@
-{ 
-        "fileVersion": 29, 
-        "fileSize": 244350, 
-        "manufacturerCode": 4447, 
-        "imageType": 9480, 
-        "sha512": "6810b06a486f7689c87186e593dfdd6f5e0900ac9da154d515c6dd8881c6688ffbaac82e370940ebf133098f26c9a2df1aaf81b6fe0bc2815ee6ac2958b424d5", 
-        "modelId": "lumi.airmonitor.acn01", 
-        "url": "http://cdn.aqara.com/cdn/opencloud-product/mainland/product-firmware/prd/lumi.airmonitor.acn01/20220222202427_OTA_lumi.airmonitor.acn01_0.0.0_0029_20220222_17EC2C.ota" 
-    },
+[
+	{ 
+		"fileVersion": 29, 
+		"fileSize": 244350, 
+		"manufacturerCode": 4447, 
+		"imageType": 9480, 
+		"sha512": "6810b06a486f7689c87186e593dfdd6f5e0900ac9da154d515c6dd8881c6688ffbaac82e370940ebf133098f26c9a2df1aaf81b6fe0bc2815ee6ac2958b424d5", 
+		"modelId": "lumi.airmonitor.acn01", 
+		"url": "http://cdn.aqara.com/cdn/opencloud-product/mainland/product-firmware/prd/lumi.airmonitor.acn01/20220222202427_OTA_lumi.airmonitor.acn01_0.0.0_0029_20220222_17EC2C.ota" 
+	},
+]
